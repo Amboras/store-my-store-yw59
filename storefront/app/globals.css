@@ -4,35 +4,31 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 0 0% 10%;
-    --muted: 40 10% 94%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 35 40% 50%;
+    --background: 0 0% 98%;
+    --foreground: 220 15% 10%;
+    --muted: 220 10% 94%;
+    --muted-foreground: 220 8% 46%;
+    --accent: 16 90% 52%;
     --accent-foreground: 0 0% 100%;
-    --border: 40 10% 88%;
-    --ring: 35 40% 50%;
-    --primary: 0 0% 10%;
+    --border: 220 10% 88%;
+    --ring: 16 90% 52%;
+    --primary: 220 15% 10%;
     --primary-foreground: 0 0% 98%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-
-    /* Brand colors (dynamically injected from Store.metadata.brand) */
-    /* Access in CSS: var(--brand-primary), var(--brand-secondary) */
-    /* Managed by BrandStyleInjector component */
   }
 
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 40 20% 94%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 35 45% 55%;
+    --background: 220 15% 8%;
+    --foreground: 220 10% 94%;
+    --muted: 220 12% 14%;
+    --muted-foreground: 220 8% 55%;
+    --accent: 16 90% 52%;
     --accent-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --ring: 35 45% 55%;
-    --primary: 40 20% 94%;
-    --primary-foreground: 0 0% 6%;
+    --border: 220 12% 18%;
+    --ring: 16 90% 52%;
+    --primary: 220 10% 94%;
+    --primary-foreground: 220 15% 8%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
   }
@@ -72,7 +68,6 @@
     @apply w-full;
   }
 
-  /* Brand color utilities - uses colors from Store.metadata.brand */
   .btn-brand-primary {
     background-color: var(--brand-primary, hsl(var(--primary)));
     color: white;
@@ -99,6 +94,15 @@
 
   .bg-brand-secondary {
     background-color: var(--brand-secondary, hsl(var(--accent)));
+  }
+
+  /* Tech/electronics badge accent */
+  .badge-accent {
+    @apply inline-flex items-center gap-1.5 bg-accent/10 text-accent text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  .badge-dark {
+    @apply inline-flex items-center gap-1.5 bg-foreground text-background text-xs font-semibold px-2.5 py-1 rounded-full;
   }
 }
 
@@ -131,4 +135,24 @@ html {
 
 .animate-fade-in {
   animation: fade-in 0.3s ease-out;
+}
+
+/* Ticker animation for urgency bar */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 20s linear infinite;
+}
+
+/* Pulse glow for urgency elements */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
